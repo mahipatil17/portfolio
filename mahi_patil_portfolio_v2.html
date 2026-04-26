@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahi Patil — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f5f2ec;
+  --surface:#ede9e1;
+  --card:#ffffff;
+  --accent:#2d4a3e;
+  --gold:#8b6f47;
+  --text:#1a1a18;
+  --muted:#6b6860;
+  --border:rgba(45,74,62,0.15);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(245,242,236,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:0.06em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{
+  padding:5.5rem 3rem 3rem;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:3rem;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+}
+.hero-tag{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:600;line-height:1;color:var(--accent);}
+.hero-name em{font-style:italic;color:var(--gold);}
+.hero-role{margin-top:0.5rem;font-size:0.88rem;color:var(--muted);font-weight:300;letter-spacing:0.05em;}
+.hero-desc{margin-top:0.8rem;max-width:460px;color:rgba(26,26,24,0.6);font-size:0.88rem;line-height:1.7;}
+.hero-cta{margin-top:1.4rem;display:flex;gap:0.7rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;padding:0.6rem 1.4rem;border-radius:2px;font-size:0.73rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;border:1px solid transparent;}
+.btn-primary{background:var(--accent);color:#f5f2ec;border-color:var(--accent);}
+.btn-primary:hover{background:transparent;color:var(--accent);}
+.btn-outline{background:transparent;color:var(--text);border-color:rgba(26,26,24,0.2);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+.hero-stats{display:flex;flex-direction:column;gap:1.8rem;align-items:flex-end;}
+.stat{text-align:right;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--accent);line-height:1;font-weight:600;}
+.stat-label{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+
+/* SECTIONS */
+section{padding:3rem;}
+.section-label{font-size:0.67rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.15;margin-bottom:0.6rem;font-weight:600;color:var(--accent);}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-line{width:36px;height:1.5px;background:var(--gold);margin-bottom:1.8rem;}
+
+/* SKILLS */
+.skills-section{background:var(--surface);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.4rem;transition:border-color 0.25s,transform 0.2s;}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.skill-name{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.tag{font-size:0.7rem;padding:0.18rem 0.55rem;border-radius:2px;background:rgba(45,74,62,0.07);color:var(--accent);border:1px solid rgba(45,74,62,0.15);}
+.tag.warm{background:rgba(139,111,71,0.08);color:var(--gold);border-color:rgba(139,111,71,0.2);}
+
+/* PROJECTS */
+.projects-section{background:var(--bg);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.7rem;transition:border-color 0.25s,transform 0.2s;}
+.project-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.project-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:rgba(45,74,62,0.1);line-height:1;margin-bottom:0.3rem;font-weight:600;}
+.project-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;color:var(--accent);}
+.project-desc{font-size:0.83rem;color:rgba(26,26,24,0.58);line-height:1.65;}
+.project-badge{display:inline-block;margin-top:0.9rem;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(139,111,71,0.3);padding:0.18rem 0.5rem;border-radius:2px;}
+
+/* EXPERIENCE */
+.exp-section{background:var(--surface);}
+.exp-timeline{max-width:660px;}
+.exp-item{display:grid;grid-template-columns:90px 1fr;gap:2rem;padding:1.6rem 0;border-bottom:1px solid var(--border);}
+.exp-item:last-child{border-bottom:none;}
+.exp-year{font-size:0.72rem;color:var(--muted);padding-top:0.1rem;letter-spacing:0.04em;}
+.exp-role{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.2rem;color:var(--accent);}
+.exp-company{font-size:0.78rem;color:var(--gold);margin-bottom:0.7rem;letter-spacing:0.04em;}
+.exp-list{list-style:none;}
+.exp-list li{font-size:0.83rem;color:rgba(26,26,24,0.62);padding-left:1rem;position:relative;margin-bottom:0.28rem;}
+.exp-list li::before{content:'-';position:absolute;left:0;color:var(--gold);}
+
+/* EDUCATION */
+.edu-section{background:var(--bg);}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.3rem;transition:border-color 0.25s,transform 0.2s;}
+.edu-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.edu-inst{font-family:'Cormorant Garamond',serif;font-size:0.98rem;font-weight:600;margin-bottom:0.25rem;color:var(--accent);}
+.edu-detail{font-size:0.8rem;color:var(--gold);font-weight:500;}
+.edu-sub{font-size:0.74rem;color:var(--muted);margin-top:0.18rem;}
+
+/* CONTACT */
+.contact-section{background:var(--surface);}
+.contact-grid{display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem;}
+.contact-link{display:flex;align-items:center;gap:0.5rem;padding:0.65rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--text);font-size:0.78rem;transition:border-color 0.2s,color 0.2s;}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);}
+.contact-icon{width:13px;height:13px;fill:currentColor;flex-shrink:0;}
+
+footer{padding:1.1rem 3rem;text-align:center;font-size:0.7rem;color:var(--muted);border-top:1px solid var(--border);background:var(--bg);}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  nav{padding:0.8rem 1.2rem;}
+  .nav-links{gap:1rem;}
+  .hero{grid-template-columns:1fr;padding:5rem 1.5rem 2rem;}
+  .hero-stats{flex-direction:row;align-items:flex-start;justify-content:flex-start;}
+  section{padding:2.5rem 1.5rem;}
+  footer{padding:1rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Mahi Patil</div>
+  <ul class="nav-links">
+    <li><a href="#hero">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <div class="hero-tag">Computer Engineer · Mumbai</div>
+    <h1 class="hero-name">Mahi<br><em>Patil</em></h1>
+    <p class="hero-role">Backend Developer &amp; Problem Solver</p>
+    <p class="hero-desc">Computer engineering student who enjoys building things and understanding how systems actually work. I learn by doing — real projects, real impact.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">8.86</div><div class="stat-label">CGPA</div></div>
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num">96%</div><div class="stat-label">10th Score</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label">What I Work With</div>
+  <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-name">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">C</span><span class="tag">C++</span>
+        <span class="tag">SQL</span><span class="tag">R</span><span class="tag">HTML</span><span class="tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">Tools</div>
+      <div class="skill-tags">
+        <span class="tag warm">MySQL</span><span class="tag warm">Git</span><span class="tag warm">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">Core Concepts</div>
+      <div class="skill-tags">
+        <span class="tag">Data Structures</span><span class="tag">Backend Dev</span>
+        <span class="tag">Frontend Basics</span><span class="tag">Data Analytics</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-name">Learning</div>
+      <div class="skill-tags">
+        <span class="tag warm">Data Science</span><span class="tag warm">ML Basics</span><span class="tag warm">Data Viz</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label">What I've Built</div>
+  <h2 class="section-title">Featured <em>Projects</em></h2>
+  <div class="section-line"></div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-name">Bonsai - Mental Health Platform</div>
+      <p class="project-desc">Built for Smart India Hackathon. Supports student wellbeing with self-assessment tools, peer support, and resource discovery.</p>
+      <span class="project-badge">SIH Hackathon</span>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-name">FYConnect - Student Networking</div>
+      <p class="project-desc">A platform connecting college peers for collaboration. Focused on engagement, information sharing, and smooth UX.</p>
+      <span class="project-badge">Full Stack</span>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-name">AgriTech Animal Detection</div>
+      <p class="project-desc">Hackathon project detecting animals in agricultural zones to help reduce crop damage using computer vision techniques.</p>
+      <span class="project-badge">AgriTech · Hackathon</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-label">Where I've Worked</div>
+  <h2 class="section-title">Work <em>Experience</em></h2>
+  <div class="section-line"></div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-year">Intern</div>
+      <div>
+        <div class="exp-role">Marketing / Data Scraping Intern</div>
+        <div class="exp-company">Ridlin</div>
+        <ul class="exp-list">
+          <li>Executed digital marketing initiatives and campaign strategies</li>
+          <li>Built a data scraping pipeline to collect and analyse market data</li>
+          <li>Integrated data insights into marketing decisions</li>
+          <li>Combined technical and marketing approaches in a real-world setting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">Pursuing</div>
+      <div>
+        <div class="exp-role">IBM Data Science Professional Certificate</div>
+        <div class="exp-company">Coursera</div>
+        <ul class="exp-list">
+          <li>Data analysis, Python, data visualisation, and machine learning basics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="section-label">Academic Background</div>
+  <h2 class="section-title"><em>Education</em></h2>
+  <div class="section-line"></div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-inst">KJ Somaiya College of Engineering</div>
+      <div class="edu-detail">CGPA: 8.86</div>
+      <div class="edu-sub">Computer Engineering · Vidyavihar</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-inst">Sharsadram Vidya Mandir</div>
+      <div class="edu-detail">81% — MH CET 95.5 Percentile</div>
+      <div class="edu-sub">12th · Dadar</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-inst">Greenlawns School</div>
+      <div class="edu-detail">96%</div>
+      <div class="edu-sub">10th · Worli</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Get In <em>Touch</em></h2>
+  <div class="section-line"></div>
+  <p style="color:rgba(26,26,24,0.58);font-size:0.87rem;">Open to internships, collaborations, and interesting projects.</p>
+  <div class="contact-grid">
+    <a href="mailto:mahi.o.patildocs@gmail.com" class="contact-link">
+      <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      mahi.o.patildocs@gmail.com
+    </a>
+    <a href="tel:9757176838" class="contact-link">
+      <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      9757176838
+    </a>
+    <a href="https://github.com/mahipatil17" target="_blank" class="contact-link">
+      <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/mahi-patil-823833329/" target="_blank" class="contact-link">
+      <svg class="contact-icon" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>Designed for Mahi Patil · 2026</footer>
+
+</body>
+</html>
